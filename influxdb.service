@@ -1,0 +1,11 @@
+[Unit]
+Description=influxDB
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/uecs2influxdb/influxd
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
