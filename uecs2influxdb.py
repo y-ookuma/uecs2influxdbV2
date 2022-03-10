@@ -1,9 +1,9 @@
 #----------------------------------------------------------------------*/influxdb_client
-# 2022.03.19 UECS 
+# 2022.03.10 UECS 
 # sudo apt-get install python3-pip -y
 # sudo apt-get install python3-pandas -y
 # sudo apt-get install python3-influxdb -y
-# pip3 install influxdb-client
+# sudo pip3 install influxdb-client
 # sudo pip3 install xmltodict
 #----------------------------------------------------------------------*/
 #!/usr/bin/python3
