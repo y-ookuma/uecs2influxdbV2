@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------*/influxdb_client
-# 2022.03.10 UECS 
+# 2022.03.11 UECS 
 # sudo apt-get install python3-pip -y
 # sudo apt-get install python3-pandas -y
 # sudo apt-get install python3-influxdb -y
@@ -165,15 +165,6 @@ class udprecv():
 
             _write_client.write(bucket=self.bucket, record=data)
 
-    def influx_query(self,debug,script):
-        try:
-            rs = self.client.query_api().query(script)
-            print("test:",rs)
-        except :
-            print(script)
-            print("influxdb query処理に失敗しました。")
-            pass
-        return rs
 
 #-------------------------------------------------------#
 # Main 処理
