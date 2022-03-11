@@ -1,6 +1,6 @@
 # uecs2influxdbV2
-Influxdb Ver2.x Support 
-[UECS(japanese greenhouse IOT Resolution)](https://uecs.jp/)　to [Influxdb](https://www.influxdata.com/).  
+Influxdb Ver2.x Support  
+[UECS(japanese greenhouse IOT Resolution)](https://uecs.jp/)　to [Influxdb2.x](https://www.influxdata.com/).  
 UECS ccmデータをInfluxdb2.xに格納します。  
 これにより[Grafana](https://grafana.com/)や[telegraf](https://docs.influxdata.com/telegraf/)を使ってデータベースをリアルタイムに可視化することが可能になります。  
 [UECS通信規約](https://uecs.jp/uecs/kiyaku/UECSStandard100_E10.pdf)を確認ください。
