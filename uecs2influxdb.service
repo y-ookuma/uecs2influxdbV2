@@ -1,16 +1,19 @@
+#/etc/systemd/system/influxdb.service
+
 [Unit]
-Description=uecs2influxDB
-After=network.target
-After=influxdb.service
+Description=InfluxDB is an open-source, distributed, time-series database
+Documentation=https://docs.influxdata.com/influxdb/
+After=network-online.target
+Wants=network-online.target
 
 [Service]
-WorkingDirectory=/home/pi/
-Type=simple
-ExecStart=/usr/bin/python3 /opt/uecs2influxdb/uecs2influxdb.py
+User=influxdb
+Group=influxdb
+ExecStart=/usr/bin/influxd
+KillMode=control-group
 Restart=on-failure
-user=pi
-Group=pi
-Environment="PYTHONPATH=$PYTHONPATH:/home/pi/.local/lib/python3.9/site-packages"
+RestartSec=5s
+#LimitNOFILE=65536
 
 [Install]
 WantedBy=multi-user.target
