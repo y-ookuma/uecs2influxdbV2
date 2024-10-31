@@ -126,7 +126,7 @@ $ sudo systemctl enable influxdb
 
 ### [uecs2influxdb.cfg](https://github.com/y-ookuma/uecs2influxdb/blob/main/uecs2influxdb.cfg)
 
-uecs2influxdb.cfgにＩｎｆｌｕｘＤＢの情報を記述します。
+uecs2influxdb.cfgにInfluxDBの情報を記述します。
 
 ```
 [influx2]
