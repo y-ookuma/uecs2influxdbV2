@@ -13,86 +13,9 @@ MicroSD Card 16G or more / class10 / MLC
 python3.9+ 仮想環境
 user:pi
 
-## 1.python仮想環境作成
-```
-$ sudo apt-get update -y
-$ sudo apt-get install git -y
-```
-/home/pi/myenvに仮想環境作成と仮定
-```
-python3 -m venv myenv
-source myenv/bin/activate
-pip install -y python3-pandas
-pip install -y docutils,python-geohash,pyephem,schedule,expect
-pip install -y python3-influxdb
-```
-## 2.Influxdb2.x Install
-[インストール方法](https://github.com/y-ookuma/uecs2influxdb/wiki)を参照ください。  
-
-### 2-1.Influxdb2.x Setting
- [influxData ダウンロード page](https://www.influxdata.com/downloads/)
- Platform :Linux Binaries(ARM 64-bit)
-```
-$ wget https://download.influxdata.com/influxdb/releases/influxdb2-2.7.10_linux_arm64.tar.gz
-$ tar xvfz influxdb2-2.7.10_linux_arm64.tar.gz
-$ cd influxdb2-2.7.10
-$ sudo cp -R * /
-```
-### 2-2.user 追加
-``` 
-$ sudo adduser influxdb 
-パスワードにrootを入れるが、他は空欄でENTER
-Enter new UNIX password:root (←入力しても表示されない。rootといれたら、次はEnterを押下してください)
-Retype new UNIX password:root (←入力しても表示されない。rootといれたら、次はEnterを押下してください)
-Enter the new value, or press ENTER for the default
-Full Name []:
-Room Number []:
-Work Phone []:
-Home Phone []:
-Other []:
-Is the information correct? [Y/n] y
-$ id influxdb
-uid=1001(influxdb) gid=1001(influxdb) groups=1001(influxdb) 表示されていることを確認
-```
-### 2-3.influxdb起動確認とtoken作成
-``` $ ./influxd ```
-### 2-3-1.ブラウザでアクセス tokenとorg 作成すること
-http://localhost:8086
-### 2-4.接続設定の作成
-```
-influx config create --name my-config --url http://localhost:8086 --org example-org --token mySuperSecretToken
-influx config set active my-config
-接続設定の確認
-influx config list
-```
-### 2-5.influxQL使用設定
-sudo nano /etc/influxdb/config.toml
-```   
- [influxql]
-   enabled = true
-```
-### 2-6.influxDB再起動
-``` 
-$ sudo systemctl restart influxdb
-$ sudo systemctl enable influxdb
-```
-
-## 3.uecs2influxdbV2 Install
-``` 
-$ wget https://github.com/y-ookuma/uecs2influxdbV2/archive/refs/heads/main.zip
-$ unzip main.zip
-$ cd uecs2influxdbV2-main
-$ sudo cp -R * /
-$ cd /opt/uecs2influxdbV2
-設定ファイルを作成(現在流れているccmを取得してファイルを作成します。)
-$ python3 make_ccm_json.py
-設定ファイルを修正 データ取得する(savemodeを修正)
-$ sudo nano uecs2influxdb.cfg
-自動起動設定
-$ sudo systemctl start uecs2influxdb.service
-$ sudo systemctl enable uecs2influxdb.service
-
-```
+# 環境設定
+ WIKIページを参照  
+[インストール](https://github.com/y-ookuma/uecs2influxdbV2/wiki)  
 
 
 ### UECS 通信サンプル
