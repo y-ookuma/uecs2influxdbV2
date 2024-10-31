@@ -13,9 +13,9 @@ MicroSD Card 16G or more / class10 / MLC
 python3.9+ 仮想環境
 user:pi
 
-# 環境設定
+### 環境設定
  WIKIページを参照  
-[インストール](https://github.com/y-ookuma/uecs2influxdbV2/wiki)  
+## [インストール](https://github.com/y-ookuma/uecs2influxdbV2/wiki)  
 
 
 ### UECS 通信サンプル
