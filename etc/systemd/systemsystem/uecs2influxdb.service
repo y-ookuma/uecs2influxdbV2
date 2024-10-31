@@ -1,0 +1,18 @@
+[Unit]
+Description=uecs2influxDB
+After=network.target
+After=influxdb.service
+
+[Service]
+WorkingDirectory=/home/pi/
+Type=simple
+# Exec in a virtual environment
+ExecStart=/bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/uecs2influxdb.py'
+#ExecStart=/usr/bin/python3 /opt/uecs2influxdb/uecs2influxdb.py
+Restart=on-failure
+user=pi
+Group=pi
+Environment="PYTHONPATH=$PYTHONPATH:/home/pi/.local/lib/python3.9/site-packages"
+
+[Install]
+WantedBy=multi-user.target
