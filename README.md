@@ -15,6 +15,50 @@ python3.9
 ### Install
 [インストール方法](https://github.com/y-ookuma/uecs2influxdb/wiki)を参照ください。  
 
+### Influxdb2.x Install
+ [influxData ダウンロード page](https://www.influxdata.com/downloads/)
+ Platform :Linux Binaries(ARM 64-bit)
+```
+wget https://download.influxdata.com/influxdb/releases/influxdb2-2.7.10_linux_arm64.tar.gz
+tar xvfz influxdb2-2.7.10_linux_arm64.tar.gz
+cd influxdb2-2.7.10
+sudo cp -R * /
+user 追加
+$ sudo adduser influxdb
+パスワードにrootを入れるが、他は空欄でENTER
+Enter new UNIX password:root (←入力しても表示されない。rootといれたら、次はEnterを押下してください)
+Retype new UNIX password:root (←入力しても表示されない。rootといれたら、次はEnterを押下してください)
+Enter the new value, or press ENTER for the default
+Full Name []:
+Room Number []:
+Work Phone []:
+Home Phone []:
+Other []:
+Is the information correct? [Y/n] y
+$ id influxdb
+uid=1001(influxdb) gid=1001(influxdb) groups=1001(influxdb) 表示されていることを確認
+
+# influxdb起動確認
+./influxd
+# ブラウザでアクセス tokenとorg 作成すること
+http://localhost:8086
+# 接続設定の作成
+influx config create --name my-config --url http://localhost:8086 --org example-org --token mySuperSecretToken
+influx config set active my-config
+# 接続設定の確認
+influx config list
+# influxQL使用設定
+sudo nano /etc/influxdb/config.toml
+```   
+ [influxql]
+   enabled = true
+```   
+sudo systemctl restart influxdb
+sudo systemctl enable influxdb
+
+
+```   
+
 ### UECS 通信サンプル
 
 ```
