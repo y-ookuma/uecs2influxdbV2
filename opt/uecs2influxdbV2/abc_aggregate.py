@@ -1,3 +1,17 @@
+//----------------------------------------------------------------------
+// 2024.11.02 Aggregate TASK
+// 
+//  receive_ccm.json を参照して
+//    measurement の savemode=abc の場合、6時間毎に集計する    
+//  Exsample：
+//      集計先：buckt uecs  / measurement k_sht31temp_1_5_1
+//      格納先：buckt aggregate
+//          時間帯          measurement      tag
+//           0-6時      -->   ABC_0-6      k_sht31temp_1_5_1
+//           6-12時     -->   ABC_6-12     k_sht31temp_1_5_1
+//          12-18時     -->   ABC_12-18    k_sht31temp_1_5_1
+//          18-24時     -->   ABC_18-24    k_sht31temp_1_5_1
+//----------------------------------------------------------------------
 import json
 import configparser
 import logging
