@@ -1,9 +1,8 @@
 import json
 import configparser
 import logging
-from datetime import datetime, timedelta
 from typing import List, Dict
-from influxdb_client import InfluxDBClient, Point, WriteOptions
+from influxdb_client import InfluxDBClient, WriteOptions
 from influxdb_client.client.exceptions import InfluxDBError
 
 # ロギングの設定
@@ -57,7 +56,7 @@ class InfluxDBProcessor:
         try:
             with open(ccm_path, 'r') as file:
                 data = json.load(file)
-            return [m['measurement'] for m in data if m['savemode'] == 'abc']
+            return [key for key, value in data.items() if value.get('savemode') == 'abc']
         except Exception as e:
             logger.error(f"CCMファイルの読み込みに失敗: {e}")
             raise
