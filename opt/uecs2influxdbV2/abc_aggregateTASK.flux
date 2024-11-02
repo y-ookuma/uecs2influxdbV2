@@ -12,9 +12,9 @@
 //          12-18時     -->   ABC_12-18    k_sht31temp_1_5_1
 //          18-24時     -->   ABC_18-24    k_sht31temp_1_5_1
 //----------------------------------------------------------------------
-// task名 1時間毎に実施
+// task名 1日毎に実施
 option task = {name: "Daily Time Range Aggregation", every: 24h}
-
+// 1日前のデータに限る
 option v = {timeRangeStart: -2d, timeRangeStop: -1d}
 
 // 0-6時のデータを集計して保存
