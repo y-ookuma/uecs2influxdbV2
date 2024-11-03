@@ -1,6 +1,6 @@
 import configparser
 import json
-import logging
+import logging,os
 from datetime import datetime
 from typing import List, Dict, Any, Set
 from influxdb import InfluxDBClient
@@ -8,12 +8,15 @@ from influxdb.exceptions import InfluxDBClientError
 
 def setup_logging() -> None:
     """ロギングの設定"""
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(f'migration_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'),
-            logging.StreamHandler()
+    log_dir = 'log' 
+    os.makedirs(log_dir, exist_ok=True) 
+    log_filename = os.path.join(log_dir, f'migration_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log')
+
+    logging.basicConfig( 
+        level=logging.INFO, 
+        format='%(asctime)s - %(levelname)s - %(message)s', 
+        handlers=[ logging.FileHandler(log_filename),
+        logging.StreamHandler() 
         ]
     )
 
