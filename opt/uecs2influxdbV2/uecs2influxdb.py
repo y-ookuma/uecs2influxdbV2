@@ -1,11 +1,3 @@
-#----------------------------------------------------------------------*/influxdb_client
-# 2024.10.30 UECS 
-# sudo apt-get install python3-pip -y
-# sudo apt-get install python3-pandas -y
-# sudo apt-get install python3-influxdb -y
-# sudo pip3 install influxdb-client
-# sudo pip3 install xmltodict
-#----------------------------------------------------------------------*/
 #!/usr/bin/python3
 
 import os
@@ -134,7 +126,7 @@ class UECSReceiver:
         with self.client.write_api(write_options=write_options) as write_client:
             influx_data = {
                 "measurement": data["measurement"],
-                "tags": {"cloud": "0", "downsample": "0"},
+                "tags": {"cloud": "0", "downsample": "0","priority":data["priority"]},
                 "fields": {"value": data["value"]}
             }
             write_client.write(bucket=self.bucket, record=influx_data)
