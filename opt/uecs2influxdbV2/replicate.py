@@ -182,8 +182,10 @@ def main() -> None:
     try:
         # 設定の読み込み
         config = load_config('uecs2influxdb.cfg')
-        valid_measurements = load_measurement_filter('receive_ccm.json')
-        
+        valid_measurements = load_measurement_filter('receive_ccm.json') #set
+        #集計用measurementを追加指定
+        valid_measurements.update(['ABC_0-6', 'ABC_6-12', 'ABC_12-18', 'ABC_18-24'])  # setに複数要素を追加
+
         source_config = config['influx2']
         target_config = config['influxdb_cloud']
 
