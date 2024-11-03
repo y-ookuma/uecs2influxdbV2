@@ -1,10 +1,10 @@
 #/bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/abc_aggregate.py'
 #/bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/replicate.py'
 
-# Run abc_aggregate.py every day at midnight
+# Run abc_aggregate.py daily at midnight and log errors
 # 集計は1日毎に実施
-0 0 * * * /bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/abc_aggregate.py'
+0 0 * * * /bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/abc_aggregate.py' >> /home/pi/logs/abc_aggregate.log 2>&1
 
-# Run replicate.py every 10 minutes
+# Run replicate.py every 10 minutes and log errors
 # クラウド等へのデータ連携は10分ごとに実施
-*/10 * * * * /bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/replicate.py'
+*/10 * * * * /bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/replicate.py' >> /home/pi/logs/replicate.log 2>&1
