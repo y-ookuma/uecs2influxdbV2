@@ -1,0 +1,8 @@
+#/bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/abc_aggregate.py'
+#/bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/replicate.py'
+
+# Run abc_aggregate.py every day at midnight
+0 0 * * * /bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/abc_aggregate.py'
+
+# Run replicate.py every 10 minutes
+*/10 * * * * /bin/bash -c 'source /home/pi/myenv/bin/activate && exec python /opt/uecs2influxdbV2/replicate.py'
